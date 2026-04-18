@@ -78,6 +78,18 @@ nav h2{color:#00ffcc;letter-spacing:2px;}
 .nav-links.active{display:flex;}
 .menu-toggle{display:block;cursor:pointer;}
 }
+#footer{
+text-align:center;
+padding:25px;
+font-size:14px;
+color:#00ffcc;
+text-shadow:0 0 10px #00ffcc,0 0 20px #00ffcc,0 0 40px #00ffcc;
+animation:glowPulse 2s infinite alternate;
+}
+@keyframes glowPulse{
+0%{opacity:0.6;text-shadow:0 0 5px #00ffcc;}
+100%{opacity:1;text-shadow:0 0 25px #00ffcc,0 0 50px #00ffcc;}
+}
 </style>
 </head>
 
@@ -227,7 +239,7 @@ draw();
 
 </script>
 
-<footer style="text-align:center;padding:20px;color:#00ffcc;font-size:14px;opacity:0.8;">
+<footer id="footer">
 © 2026 BG CRAZY. All Rights Reserved.
 </footer>
 
