@@ -3,245 +3,293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="BG Crazy - Cinematic Editor, Animator & Minecraft Developer">
 <title>BG CRAZY</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
 body{
-margin:0;
-padding-top:70px;
 font-family:'Poppins',sans-serif;
 background:#050505;
 color:white;
 overflow-x:hidden;
 scroll-behavior:smooth;
-cursor:none;
 }
 
-/* CUSTOM CURSOR */
-.cursor{
-position:fixed;
-width:15px;
-height:15px;
-border-radius:50%;
-background:#00ffcc;
-pointer-events:none;
-z-index:9999;
-box-shadow:0 0 20px #00ffcc;
-}
-
-#bg{position:fixed;width:100%;height:100%;z-index:-1;}
-
-#progress{position:fixed;top:0;left:0;height:4px;background:#00ffcc;width:0%;z-index:2000;}
-
-/* LOADER */
+/* LOADER CINEMATIC */
 #loader{
 position:fixed;
-width:100%;height:100%;
-background:#000;
-display:flex;align-items:center;justify-content:center;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
 z-index:5000;
-font-size:30px;color:#00ffcc;
-animation:fadeOut 2s 2s forwards;
+flex-direction:column;
+animation:fadeOut 2s 3s forwards;
 }
-@keyframes fadeOut{to{opacity:0;visibility:hidden;}}
 
-nav{position:fixed;width:100%;padding:15px 30px;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);display:flex;justify-content:space-between;z-index:1000;}
-nav h2{color:#00ffcc;letter-spacing:2px;}
-.nav-links{display:flex;}
-.nav-links a{color:white;margin:0 12px;text-decoration:none;}
-.nav-links a:hover{color:#00ffcc;}
-.menu-toggle{display:none;}
+#loader h1{
+font-size:40px;
+letter-spacing:5px;
+color:#00ffcc;
+text-shadow:0 0 20px #00ffcc;
+animation:zoomIn 2s ease;
+}
 
-.hero{height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;}
-.hero h1{font-size:clamp(30px,6vw,65px);}
-.hero h1 span{color:#00ffcc;text-shadow:0 0 10px #00ffcc,0 0 40px #00ffcc;}
+#loader p{
+margin-top:10px;
+opacity:0.6;
+}
 
-.btn{margin-top:20px;padding:12px 28px;background:linear-gradient(45deg,#00ffcc,#00ccff);color:black;border-radius:30px;font-weight:bold;text-decoration:none;transition:.3s;}
-.btn:hover{transform:scale(1.1);box-shadow:0 0 40px #00ffcc;}
+@keyframes zoomIn{
+0%{transform:scale(0.5);opacity:0;}
+100%{transform:scale(1);opacity:1;}
+}
 
-.section{padding:90px 20px;text-align:center;}
-.card{background:rgba(255,255,255,0.05);border:1px solid rgba(0,255,204,0.2);backdrop-filter:blur(10px);margin:15px;padding:25px;display:inline-block;border-radius:15px;width:260px;transition:.4s;}
-.card:hover{transform:translateY(-12px) scale(1.05);box-shadow:0 0 40px #00ffcc;}
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden;pointer-events:none;}
+}
 
-.card a{color:#00ffcc;text-decoration:none;font-weight:600;}
-.card a:hover{text-shadow:0 0 10px #00ffcc;}
+/* NAVBAR */
+nav{
+position:fixed;
+top:0;
+width:100%;
+height:70px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 40px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+z-index:1000;
+transition:0.3s;
+}
 
-.fade{opacity:0;transform:translateY(40px);transition:1s;}
-.fade.show{opacity:1;transform:translateY(0);}
+nav.shrink{
+height:55px;
+background:rgba(0,0,0,0.9);
+}
 
+nav h2{
+color:#00ffcc;
+letter-spacing:2px;
+}
+
+.nav-links{
+display:flex;
+}
+
+.nav-links a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+color:#00ffcc;
+text-shadow:0 0 10px #00ffcc;
+}
+
+.menu-toggle{display:none;cursor:pointer;}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding-top:70px;
+}
+
+.hero h1{
+font-size:clamp(30px,6vw,65px);
+}
+
+.hero span{
+color:#00ffcc;
+text-shadow:0 0 20px #00ffcc;
+}
+
+.btn{
+margin-top:20px;
+padding:12px 30px;
+background:linear-gradient(45deg,#00ffcc,#00ccff);
+border-radius:30px;
+color:black;
+font-weight:bold;
+text-decoration:none;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 40px #00ffcc;
+}
+
+/* SECTIONS */
+.section{
+padding:80px 20px;
+text-align:center;
+scroll-margin-top:80px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(0,255,204,0.2);
+padding:25px;
+margin:15px;
+display:inline-block;
+border-radius:15px;
+width:260px;
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 0 40px #00ffcc;
+}
+
+/* MOBILE */
 @media(max-width:768px){
-.nav-links{display:none;flex-direction:column;background:black;position:absolute;top:60px;right:0;}
-.nav-links.active{display:flex;}
-.menu-toggle{display:block;cursor:pointer;}
+nav{
+padding:0 20px;
 }
+
+.nav-links{
+display:none;
+flex-direction:column;
+position:absolute;
+top:70px;
+right:0;
+background:black;
+width:200px;
+padding:10px;
+}
+
+.nav-links.active{
+display:flex;
+}
+
+.menu-toggle{
+display:block;
+}
+}
+
+/* FOOTER */
 #footer{
 text-align:center;
-padding:25px;
-font-size:14px;
+padding:20px;
 color:#00ffcc;
-text-shadow:0 0 10px #00ffcc,0 0 20px #00ffcc,0 0 40px #00ffcc;
-animation:glowPulse 2s infinite alternate;
-}
-@keyframes glowPulse{
-0%{opacity:0.6;text-shadow:0 0 5px #00ffcc;}
-100%{opacity:1;text-shadow:0 0 25px #00ffcc,0 0 50px #00ffcc;}
 }
 </style>
 </head>
 
 <body>
 
-<div id="loader">BG CRAZY ⚡</div>
-<div class="cursor" id="cursor"></div>
-<div id="progress"></div>
-<canvas id="bg"></canvas>
+<!-- LOADER -->
+<div id="loader">
+<h1>BG CRAZY ⚡</h1>
+<p>Loading Experience...</p>
+</div>
 
-<nav>
+<!-- NAV -->
+<nav id="navbar">
 <h2>BG CRAZY</h2>
 <i class="fa fa-bars menu-toggle" onclick="toggleMenu()"></i>
 <div class="nav-links" id="navLinks">
 <a href="#">Home</a>
 <a href="#services">Services</a>
 <a href="#portfolio">Work</a>
-<a href="#links">Socials</a>
 <a href="#team">Team</a>
-<a href="#apply">Apply</a>
 </div>
 </nav>
 
-<div class="hero fade">
+<!-- HERO -->
+<div class="hero">
 <h1>I am <span id="typing"></span></h1>
 <p>Editor • Animator • SMP Developer</p>
-<a href="#apply" class="btn">JOIN TEAM 🚀</a>
+<a href="#team" class="btn">JOIN TEAM 🚀</a>
 </div>
 
-<div class="section fade" id="services">
+<!-- SERVICES -->
+<div class="section" id="services">
 <h2>Services</h2>
 <div class="card"><i class="fa fa-video"></i><h3>Editing</h3></div>
 <div class="card"><i class="fa fa-gamepad"></i><h3>Minecraft</h3></div>
 <div class="card"><i class="fa fa-image"></i><h3>Design</h3></div>
 </div>
 
-<div class="section fade" id="portfolio">
+<!-- PORTFOLIO -->
+<div class="section" id="portfolio">
 <h2>My Work</h2>
-<div class="card"><iframe width="100%" height="150" src="https://www.youtube.com/embed/YOUR_VIDEO_ID"></iframe></div>
-<div class="card"><iframe width="100%" height="150" src="https://www.youtube.com/embed/YOUR_VIDEO_ID"></iframe></div>
-<div class="card"><iframe width="100%" height="150" src="https://www.youtube.com/embed/YOUR_VIDEO_ID"></iframe></div>
+<div class="card">
+<iframe width="100%" height="150"
+src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+allowfullscreen></iframe>
+</div>
 </div>
 
-<div class="section fade" id="links">
-<h2>Socials</h2>
-<div class="card"><i class="fab fa-instagram"></i><h3>Instagram</h3><a href="#">Visit</a></div>
-<div class="card"><i class="fab fa-youtube"></i><h3>YouTube</h3><a href="#">Visit</a></div>
-<div class="card"><i class="fab fa-discord"></i><h3>Discord</h3><a href="#">Join</a></div>
-</div>
-
-<div class="section fade" id="team">
+<!-- TEAM -->
+<div class="section" id="team">
 <h2>Team</h2>
-
-<div class="card">
-<h3>JASWANTH</h3>
-<p>Co-Owner</p>
+<div class="card"><h3>JASWANTH</h3><p>Co-Owner</p></div>
+<div class="card"><h3>RAGHUVEER</h3><p>Manager</p></div>
 </div>
 
-<div class="card">
-<h3>RAGHUVEER</h3>
-<p>Manager</p>
-</div>
-
-<div class="card">
-<h3>CHANDAN</h3>
-<p>ADMIN</p>
-</div>
-
-<div class="card">
-<h3>PRAKASH</h3>
-<p>HEAD MODERATOR</p>
-</div>
-
-<div class="card">
-<h3>VARMA</h3>
-<p>MODERATOR</p>
-</div>
-
-<div class="card">
-<h3>SHYAM</h3>
-<p>MODERATOR</p>
-</div>
-
-</div>
-
-<div class="section fade" id="apply">
-<h2>Join Team 🚀</h2>
-<a href="#" class="btn">Apply Now</a>
-</div>
+<footer id="footer">
+© 2026 BG CRAZY
+</footer>
 
 <script>
 
-function toggleMenu(){document.getElementById("navLinks").classList.toggle("active");}
-
-/* CURSOR */
-const cursor=document.getElementById("cursor");
-document.addEventListener("mousemove",e=>{
-cursor.style.top=e.clientY+"px";
-cursor.style.left=e.clientX+"px";
-});
+/* MENU */
+function toggleMenu(){
+document.getElementById("navLinks").classList.toggle("active");
+}
 
 /* TYPING */
 let text=["Marthand","Animator","Developer","Editor"];
 let i=0,j=0,del=false;
+
 function type(){
 let t=text[i];
 document.getElementById("typing").innerHTML=t.substring(0,j);
-if(!del&&j===t.length){del=true;setTimeout(type,1200);return;}
-if(del&&j===0){del=false;i=(i+1)%text.length;}
+
+if(!del && j===t.length){
+del=true;
+setTimeout(type,1200);
+return;
+}
+if(del && j===0){
+del=false;
+i=(i+1)%text.length;
+}
+
 j+=del?-1:1;
 setTimeout(type,del?50:100);
 }
 type();
 
-/* SCROLL */
-let f=document.querySelectorAll('.fade');
-window.addEventListener('scroll',()=>{
-f.forEach(el=>{
-if(el.getBoundingClientRect().top<window.innerHeight-100){el.classList.add('show');}
-});
-let sc=(window.scrollY/(document.body.scrollHeight-innerHeight))*100;
-document.getElementById("progress").style.width=sc+"%";
-});
-
-/* PARTICLES */
-const c=document.getElementById("bg");
-const ctx=c.getContext("2d");
-function resize(){c.width=innerWidth;c.height=innerHeight;}resize();
-window.addEventListener("resize",resize);
-
-let count=window.innerWidth<768?40:100;
-let p=[];
-for(let i=0;i<count;i++){
-p.push({x:Math.random()*c.width,y:Math.random()*c.height,vx:Math.random()-0.5,vy:Math.random()-0.5});
+/* NAVBAR SHRINK */
+window.addEventListener("scroll",()=>{
+let nav=document.getElementById("navbar");
+if(window.scrollY>50){
+nav.classList.add("shrink");
+}else{
+nav.classList.remove("shrink");
 }
-
-function draw(){
-ctx.clearRect(0,0,c.width,c.height);
-p.forEach(pt=>{
-pt.x+=pt.vx;pt.y+=pt.vy;
-ctx.fillStyle="#00ffcc";
-ctx.beginPath();ctx.arc(pt.x,pt.y,1.5,0,Math.PI*2);ctx.fill();
 });
-requestAnimationFrame(draw);
-}
-draw();
 
 </script>
-
-<footer id="footer">
-© 2026 BG CRAZY. All Rights Reserved.
-</footer>
 
 </body>
 </html>
